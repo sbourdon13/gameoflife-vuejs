@@ -27,9 +27,10 @@ const getNeighbours = (row, column) => {
  * @param {Object}  aliveCellsMap
  */
 const getAliveNeighboursCount = (row, column, aliveCellsMap) => {
-  /*
-    INSERT YOUR CODE HERE
-  */
+  return getNeighbours(row, column).map(val => !!aliveCellsMap[val]).reduce((count, isAliveCell) => {
+    if (isAliveCell) count++;
+    return count;
+  })
 }
 
 /**
@@ -39,9 +40,11 @@ const getAliveNeighboursCount = (row, column, aliveCellsMap) => {
  * @param {Object}  aliveNeighboursCount
  */
 const getCellNextState = (isAliveCell, aliveNeighboursCount) => {
-  /*
-    INSERT YOUR CODE HERE
-  */
+  if (aliveNeighboursCount < 2 || aliveNeighboursCount > 3) {
+    return false;
+  }
+  else if (aliveNeighboursCount === 2) { return isAliveCell; }
+  else if (aliveNeighboursCount === 3) { return true; }
 }
 
 /**
@@ -52,7 +55,14 @@ const getCellNextState = (isAliveCell, aliveNeighboursCount) => {
  * @param {Object}  aliveCellsMap
  */
 export const getNextMap = (rowsCount, columnsCount, aliveCellsMap) => {
-  /*
-    INSERT YOUR CODE HERE
-  */
+  const newAliveCellsMap = {};
+
+  for (let i = 0; i < rowsCount; i++) {
+    for (let j = 0; j < columnsCount; j++) {
+      let cellId = getCellId(i, j)
+      newAliveCellsMap[cellId] = getCellNextState(!!aliveCellsMap[cellId], getAliveNeighboursCount(i, j, aliveCellsMap))
+    }
+  }
+
+  return newAliveCellsMap;
 }

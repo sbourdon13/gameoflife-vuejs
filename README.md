@@ -1,4 +1,6 @@
-# game-of-life
+# Game of Life
+
+This project is an implementation of [Conway's Game of life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life) in VueJS, made during a dojo event at Theodo.
 
 ## Project setup
 ```
@@ -9,18 +11,4 @@ npm install
 ```
 npm run serve
 ```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Run your tests
-```
-npm run test
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
+Open http://localhost:8080/ and start the game!
